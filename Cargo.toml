@@ -1,7 +1,11 @@
 [package]
-name = "io"
+name = "redox_hwio"
 version = "0.1.0"
-authors = ["Jeremy Soller <jeremy@system76.com>"]
 edition = "2018"
+description = "Rust Hardware MMIO and PIO"
+license = "MIT"
+authors = ["Jeremy Soller <jackpot51@gmail.com>"]
+repository = "https://gitlab.redox-os.org/redox-os/hwio"
 
-[dependencies]
+[lib]
+name = "hwio"
