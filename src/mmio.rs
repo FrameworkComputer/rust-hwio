@@ -1,6 +1,6 @@
-use core::intrinsics::{volatile_load, volatile_store};
-use core::mem::uninitialized;
+use core::mem::MaybeUninit;
 use core::ops::{BitAnd, BitOr, Not};
+use core::ptr;
 
 use super::io::Io;
 
@@ -13,7 +13,7 @@ impl<T> Mmio<T> {
     /// Create a new Mmio without initializing
     pub fn new() -> Self {
         Mmio {
-            value: unsafe { uninitialized() }
+            value: unsafe { MaybeUninit::uninit().assume_init() }
         }
     }
 }
@@ -22,10 +22,10 @@ impl<T> Io for Mmio<T> where T: Copy + PartialEq + BitAnd<Output = T> + BitOr<Ou
     type Value = T;
 
     fn read(&self) -> T {
-        unsafe { volatile_load(&self.value) }
+        unsafe { ptr::read_volatile(&self.value) }
     }
 
     fn write(&mut self, value: T) {
-        unsafe { volatile_store(&mut self.value, value) };
+        unsafe { ptr::write_volatile(&mut self.value, value) };
     }
 }

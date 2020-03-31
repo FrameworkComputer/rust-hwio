@@ -1,7 +1,6 @@
-#![no_std]
-#![cfg_attr(any(target_arch = "x86", target_arch = "x86_64"), feature(asm))]
-#![feature(const_fn)]
-#![feature(core_intrinsics)]
+#![cfg_attr(not(feature = "stable"), no_std)]
+#![cfg_attr(all(not(feature = "stable"), any(target_arch = "x86", target_arch = "x86_64")), feature(asm))]
+#![cfg_attr(not(feature = "stable"), feature(const_fn))]
 
 pub use self::io::*;
 pub use self::mmio::*;

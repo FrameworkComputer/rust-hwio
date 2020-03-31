@@ -1,6 +1,6 @@
 [package]
 name = "redox_hwio"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
 description = "Rust Hardware MMIO and PIO"
 license = "MIT"
@@ -9,3 +9,10 @@ repository = "https://gitlab.redox-os.org/redox-os/hwio"
 
 [lib]
 name = "hwio"
+
+[dependencies]
+lazy_static = { version = "1.4.0", optional = true }
+
+[features]
+default = []
+stable = ["lazy_static"]
