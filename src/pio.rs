@@ -9,7 +9,7 @@ use std::{
     sync::Mutex,
 };
 
-#[cfg(all(feature = "stable", target_os = "linux"))]
+#[cfg(feature = "stable")]
 lazy_static::lazy_static! {
     static ref FILE: Mutex<File> = Mutex::new(
         OpenOptions::new()
