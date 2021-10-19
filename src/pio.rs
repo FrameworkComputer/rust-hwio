@@ -80,7 +80,7 @@ impl Io for Pio<u8> {
     fn read(&self) -> u8 {
         let value: u8;
         unsafe {
-            llvm_asm!("in $0, $1" : "={al}"(value) : "{dx}"(self.port) : "memory" : "intel", "volatile");
+            asm!("in al, dx", out("al") value, in("dx") self.port, options(nostack));
         }
         value
     }
@@ -96,7 +96,7 @@ impl Io for Pio<u8> {
     #[inline(always)]
     fn write(&mut self, value: u8) {
         unsafe {
-            llvm_asm!("out $1, $0" : : "{al}"(value), "{dx}"(self.port) : "memory" : "intel", "volatile");
+            asm!("out dx, al", in("al") value, in("dx") self.port, options(nostack));
         }
     }
 }
@@ -119,7 +119,7 @@ impl Io for Pio<u16> {
     fn read(&self) -> u16 {
         let value: u16;
         unsafe {
-            llvm_asm!("in $0, $1" : "={ax}"(value) : "{dx}"(self.port) : "memory" : "intel", "volatile");
+            asm!("in ax, dx", out("ax") value, in("dx") self.port, options(nostack));
         }
         value
     }
@@ -138,7 +138,7 @@ impl Io for Pio<u16> {
     #[inline(always)]
     fn write(&mut self, value: u16) {
         unsafe {
-            llvm_asm!("out $1, $0" : : "{ax}"(value), "{dx}"(self.port) : "memory" : "intel", "volatile");
+            asm!("out dx, ax", in("ax") value, in("dx") self.port, options(nostack));
         }
     }
 }
@@ -163,7 +163,7 @@ impl Io for Pio<u32> {
     fn read(&self) -> u32 {
         let value: u32;
         unsafe {
-            llvm_asm!("in $0, $1" : "={eax}"(value) : "{dx}"(self.port) : "memory" : "intel", "volatile");
+            asm!("in eax, dx", out("eax") value, in("dx") self.port, options(nostack));
         }
         value
     }
@@ -184,7 +184,7 @@ impl Io for Pio<u32> {
     #[inline(always)]
     fn write(&mut self, value: u32) {
         unsafe {
-            llvm_asm!("out $1, $0" : : "{eax}"(value), "{dx}"(self.port) : "memory" : "intel", "volatile");
+            asm!("out dx, eax", in("eax") value, in("dx") self.port, options(nostack));
         }
     }
 }
