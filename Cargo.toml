@@ -1,6 +1,6 @@
 [package]
 name = "redox_hwio"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2018"
 description = "Rust Hardware MMIO and PIO"
 license = "MIT"
