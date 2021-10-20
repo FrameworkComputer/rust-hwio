@@ -9,8 +9,10 @@ pub struct Mmio<T> {
     value: T,
 }
 
+#[allow(clippy::new_without_default)]
 impl<T> Mmio<T> {
     /// Create a new Mmio without initializing
+    #[allow(clippy::uninit_assumed_init)]
     pub fn new() -> Self {
         Mmio {
             value: unsafe { MaybeUninit::uninit().assume_init() }
