@@ -48,7 +48,7 @@ impl<T> Pio<T> {
     #[cfg(feature = "stable")]
     pub fn new(port: u16) -> Self {
         Pio::<T> {
-            port: port,
+            port,
             value: PhantomData,
         }
     }
@@ -57,7 +57,7 @@ impl<T> Pio<T> {
     #[cfg(not(feature = "stable"))]
     pub const fn new(port: u16) -> Self {
         Pio::<T> {
-            port: port,
+            port,
             value: PhantomData,
         }
     }

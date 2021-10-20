@@ -29,16 +29,12 @@ pub struct ReadOnly<I: Io> {
 impl<I: Io> ReadOnly<I> {
     #[cfg(feature = "stable")]
     pub fn new(inner: I) -> ReadOnly<I> {
-        ReadOnly {
-            inner: inner
-        }
+        ReadOnly { inner }
     }
 
     #[cfg(not(feature = "stable"))]
     pub const fn new(inner: I) -> ReadOnly<I> {
-        ReadOnly {
-            inner: inner
-        }
+        ReadOnly { inner }
     }
 
     #[inline(always)]
@@ -59,16 +55,12 @@ pub struct WriteOnly<I: Io> {
 impl<I: Io> WriteOnly<I> {
     #[cfg(feature = "stable")]
     pub fn new(inner: I) -> WriteOnly<I> {
-        WriteOnly {
-            inner: inner
-        }
+        WriteOnly { inner }
     }
 
     #[cfg(not(feature = "stable"))]
     pub const fn new(inner: I) -> WriteOnly<I> {
-        WriteOnly {
-            inner: inner
-        }
+        WriteOnly { inner }
     }
 
     #[inline(always)]
