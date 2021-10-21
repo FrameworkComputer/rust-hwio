@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 use core::mem::MaybeUninit;
 use core::ops::{BitAnd, BitOr, Not};
 use core::ptr;

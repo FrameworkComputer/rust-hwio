@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 use core::marker::PhantomData;
 
 use super::io::Io;
