@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 use core::mem::MaybeUninit;
 use core::ops::{BitAnd, BitOr, Not};
 use core::ptr;
@@ -12,6 +14,7 @@ pub struct Mmio<T> {
 #[allow(clippy::new_without_default)]
 impl<T> Mmio<T> {
     /// Create a new Mmio without initializing
+    #[deprecated]
     #[allow(clippy::uninit_assumed_init)]
     pub fn new() -> Self {
         Mmio {
@@ -24,10 +27,12 @@ impl<T> Io for Mmio<T> where T: Copy + PartialEq + BitAnd<Output = T> + BitOr<Ou
     type Value = T;
 
     fn read(&self) -> T {
-        unsafe { ptr::read_volatile(&self.value) }
+        let raw = ptr::addr_of!(self.value);
+        unsafe { raw.read_volatile() }
     }
 
     fn write(&mut self, value: T) {
-        unsafe { ptr::write_volatile(&mut self.value, value) };
+        let raw = ptr::addr_of_mut!(self.value);
+        unsafe { raw.write_volatile(value) };
     }
 }
