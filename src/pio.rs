@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 
+#[cfg(all(not(feature = "stable"), any(target_arch = "x86", target_arch = "x86_64")))]
+use core::arch::asm;
+
 use core::marker::PhantomData;
 
 use super::io::Io;
