@@ -162,7 +162,7 @@ impl Io for Pio<u8> {
         buf[0]
     }
 
-    #[cfg(all(not(feature = "std"), any(target_arch = "x86", target_arch = "x86_64")))]
+    #[cfg(all(not(target_os = "freebsd"), any(target_arch = "x86", target_arch = "x86_64")))]
     #[inline(always)]
     fn read(&self) -> u8 {
         let value: u8;
@@ -179,7 +179,7 @@ impl Io for Pio<u8> {
         port_write(self.port, &buf);
     }
 
-    #[cfg(all(not(feature = "std"), any(target_arch = "x86", target_arch = "x86_64")))]
+    #[cfg(all(not(target_os = "freebsd"), any(target_arch = "x86", target_arch = "x86_64")))]
     #[inline(always)]
     fn write(&mut self, value: u8) {
         unsafe {
@@ -201,7 +201,7 @@ impl Io for Pio<u16> {
         (buf[1] as u16) << 8
     }
 
-    #[cfg(all(not(feature = "std"), any(target_arch = "x86", target_arch = "x86_64")))]
+    #[cfg(all(not(target_os = "freebsd"), any(target_arch = "x86", target_arch = "x86_64")))]
     #[inline(always)]
     fn read(&self) -> u16 {
         let value: u16;
@@ -221,7 +221,7 @@ impl Io for Pio<u16> {
         port_write(self.port, &buf);
     }
 
-    #[cfg(all(not(feature = "std"), any(target_arch = "x86", target_arch = "x86_64")))]
+    #[cfg(all(not(target_os = "freebsd"), any(target_arch = "x86", target_arch = "x86_64")))]
     #[inline(always)]
     fn write(&mut self, value: u16) {
         unsafe {
@@ -245,7 +245,7 @@ impl Io for Pio<u32> {
         (buf[3] as u32) << 24
     }
 
-    #[cfg(all(not(feature = "std"), any(target_arch = "x86", target_arch = "x86_64")))]
+    #[cfg(all(not(target_os = "freebsd"), any(target_arch = "x86", target_arch = "x86_64")))]
     #[inline(always)]
     fn read(&self) -> u32 {
         let value: u32;
@@ -267,7 +267,7 @@ impl Io for Pio<u32> {
         port_write(self.port, &buf);
     }
 
-    #[cfg(all(not(feature = "std"), any(target_arch = "x86", target_arch = "x86_64")))]
+    #[cfg(all(not(target_os = "freebsd"), any(target_arch = "x86", target_arch = "x86_64")))]
     #[inline(always)]
     fn write(&mut self, value: u32) {
         unsafe {
