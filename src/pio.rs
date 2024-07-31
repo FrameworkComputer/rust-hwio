@@ -15,7 +15,7 @@ use std::os::fd::AsRawFd;
 
 #[cfg(all(feature = "std", target_os = "freebsd"))]
 #[repr(C)]
-struct IoDevPioReq {
+pub struct IoDevPioReq {
     access: u32,
     port: u32,
     width: u32,
